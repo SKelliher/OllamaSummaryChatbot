@@ -1,5 +1,14 @@
 from SummaryBot import SummaryBot
 
+# SummaryBot parameters
+fileTag = ''
+summaryCount = 8
+temperature = 0
+model = 'wizardlm2'
+systemPrompt = 'You are reading a YouTube transcript and will provide a summary'
+queryPrompt = 'Summarize just the text sequentially in ' + str(summaryCount) + ' detailed and numbered points. Include a short caption to begin each point '
+outputHeader = ''
+
 # open VideoIDList
 readPath = './Summary/L_VideoIDList.txt'
 readList = ''
@@ -15,7 +24,12 @@ inputLines = inputText.split('\n')
 
 for line in inputLines:
     lineData = line.split('#^#')
-    print (lineData[0], lineData[2], lineData[3])
-
-# bot = SummaryBot(fileTag, model, 1, summaryCount, systemPrompt, queryPrompt,outputHeader)
-# bot.run()
+    fileTag = lineData[2] + '_' + lineData[4] + '_' + lineData[0]
+    print (fileTag)
+    outputHeader = 'URL: ' + lineData[1] + '\n'
+    outputHeader += 'Author: ' + lineData[2]+ '\n'
+    outputHeader += 'Title: ' + lineData[3]+ '\n'
+    outputHeader += 'Published: ' + lineData[4]+ '\n'
+    outputHeader += 'Length(seconds): ' + lineData[5]+ '\n'
+    bot = SummaryBot(fileTag, model, temperature, summaryCount, systemPrompt, queryPrompt,outputHeader)
+    bot.run()
