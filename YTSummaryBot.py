@@ -22,14 +22,21 @@ inputLines = inputText.split('\n')
 # main loop to process each line in inputLines
 # then call the summaryBot for each VideoID in the first element of the line
 
+countTranscript = 0 # Count number of video transcripts processed for monitoring progress in the terminal
 for line in inputLines:
-    lineData = line.split('#^#')
-    fileTag = lineData[2] + '_' + lineData[4] + '_' + lineData[0]
-    print (fileTag)
-    outputHeader = 'URL: ' + lineData[1] + '\n'
-    outputHeader += 'Author: ' + lineData[2]+ '\n'
-    outputHeader += 'Title: ' + lineData[3]+ '\n'
-    outputHeader += 'Published: ' + lineData[4]+ '\n'
-    outputHeader += 'Length(seconds): ' + lineData[5]+ '\n'
-    bot = SummaryBot(fileTag, model, temperature, summaryCount, systemPrompt, queryPrompt,outputHeader)
-    bot.run()
+    if len(line) > 1:
+        lineData = line.split('#^#')
+        fileTag = lineData[2] + '_' + lineData[4] + '_' + lineData[0]
+        
+        outputHeader = 'URL: ' + lineData[1] + '\n'
+        outputHeader += 'Author: ' + lineData[2]+ '\n'
+        outputHeader += 'Title: ' + lineData[3]+ '\n'
+        outputHeader += 'Published: ' + lineData[4]+ '\n'
+        outputHeader += 'Length(seconds): ' + lineData[5]+ '\n'
+        bot = SummaryBot(fileTag, model, temperature, summaryCount, systemPrompt, queryPrompt,outputHeader)
+        bot.run()
+        countTranscript += 1
+        print ('\n--------------------------------------------------')
+        print (str(countTranscript) + ' ' + fileTag + '\n')
+    else:
+        pass
