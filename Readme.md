@@ -1,0 +1,2 @@
+# OllamaSummaryChatbot
+This is a Python project for personal information management. The goal is to take a source file (e.g. PDF, YouTube transcript or Web Page), parse the source file into blocks (eg of 1000 words), and then pass the parsed text sequentially to a local-instance LLM ChatBot running under Ollama to create a summary of the original text.
