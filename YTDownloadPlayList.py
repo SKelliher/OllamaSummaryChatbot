@@ -1,13 +1,28 @@
+
+# Third-Party Libraries
 from pytube import YouTube as YT
 from pytube import Playlist as PL
 from youtube_transcript_api import YouTubeTranscriptApi as YTTS
-from Block_Parse import Block_Parse
 from datetime import datetime
 
-# documentation 
-# https://pypi.org/project/pytube/
-# https://www.programcreek.com/python/example/92182/pytube.YouTube
-# https://pypi.org/project/youtube-transcript-api/
+# Project Class Libraries
+from Block_Parse import Block_Parse
+
+""" 
+Documentation for Python Libraries employed: PyTube, YouTube_Transcript_API 
+https://pypi.org/project/pytube/
+https://www.programcreek.com/python/example/92182/pytube.YouTube
+https://pypi.org/project/youtube-transcript-api/
+
+"""
+
+""" 
+* This program requires a YouTube Playlist to be specified using the PlayList_ID. 
+* The program uses PyTube to generate a list of VideoIDs for the Play List, stored as myPList
+* For the videoIDs in myPList, generate a list VideoData[] containing meta-date for each VideoID
+* VideoData[] is written to a filename based on variable videoIDListName.
+
+"""
 
 # Parsing parameters
 headerLines = 7 # number of header lines in the 'P_' + filename created for each transcript
@@ -32,6 +47,8 @@ myPList = PL(playlist_id_long)
 
 # Create VideoID list for further processing
 videoIDListName = './Summary/L_' + 'VideoIDList_' + dateString + '.txt'    
+
+# create new VideoIDList file
 with open(videoIDListName, "w", encoding="utf-8", errors="replace") as f_out:
     pass
 
