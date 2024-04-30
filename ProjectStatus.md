@@ -1,8 +1,5 @@
 # To Do List - Current
-* Add program to read VideoIDList output from YTDownloadPlayList
-    * parse it to extract VideoIDs
-    * For each VideoID retrieve associated parsed Block File
-    * Send to SummaryBot to create a summary file
+* Add a config file and Configuration Class for installation and run-time options
 
 # To Do List - Backlog
 * Add a simple database to track YouTube video data
@@ -10,3 +7,7 @@
     * DB should allow searches based on incomplete status, by added date, created date, length and author
 
 # To Do List - Complete
+* Add program to read VideoIDList output from YTDownloadPlayList
+    * parse it to extract VideoIDs
+    * For each VideoID retrieve associated parsed Block File
+    * Send to SummaryBot to create a summary file
