@@ -1,12 +1,16 @@
 from SummaryBot import SummaryBot
 
+# Run-Timee program to read YT Video meta-data from VideoIDList and process associated block files to create a summary. 
+
 # SummaryBot parameters
 fileTag = ''
 summaryCount = 8
 temperature = 0
-model = 'wizardlm2'
+model = 'llama3'
 systemPrompt = 'You are reading a YouTube transcript and will provide a summary'
-queryPrompt = 'Summarize just the text sequentially in ' + str(summaryCount) + ' detailed and numbered points. Include a short caption to begin each point '
+queryPrompt = 'Provide a brief overall summary of the text. Also provide a detailed summary of the text in ' 
+queryPrompt += str(summaryCount) + ' detailed and numbered points. Do not add additional comments.'
+# queryPrompt = 'Summarize just the text sequentially in ' + str(summaryCount) + ' detailed and numbered points. Include a short caption to begin each point '
 outputHeader = ''
 
 # open VideoIDList

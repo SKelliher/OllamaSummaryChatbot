@@ -29,11 +29,11 @@ headerLines = 7 # number of header lines in the 'P_' + filename created for each
 blockSize = 1000 # no. of words per block in th 'B_' + filename block delimited output
 
 # Summary Parameters
-summaryCount = 10
-model = 'wizardlm2'
-systemPrompt = 'You are reading a YouTube transcript and will provide a summary'
-queryPrompt = 'Summarize just the text sequentially in ' + str(summaryCount) + ' detailed and numbered points. Include a short caption to begin each point '
-headerText = ''
+# summaryCount = 10
+# model = 'wizardlm2'
+# systemPrompt = 'You are reading a YouTube transcript and will provide a summary'
+# queryPrompt = 'Summarize just the text sequentially in ' + str(summaryCount) + ' detailed and numbered points. Include a short caption to begin each point '
+# headerText = ''
 
 now = datetime.now()
 dateString = now.strftime("%y%m%d_%H%M")
