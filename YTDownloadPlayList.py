@@ -19,7 +19,7 @@ https://pypi.org/project/youtube-transcript-api/
 """ 
 * This program requires a YouTube Playlist to be specified using the PlayList_ID. 
 * The program uses PyTube to generate a list of VideoIDs for the Play List, stored as myPList
-* For the videoIDs in myPList, generate a list VideoData[] containing meta-date for each VideoID
+* For the videoIDs in myPList, generate a list VideoData[] containing meta-data for each VideoID
 * VideoData[] is written to a filename based on variable videoIDListName.
 
 """
@@ -27,13 +27,6 @@ https://pypi.org/project/youtube-transcript-api/
 # Parsing parameters
 headerLines = 7 # number of header lines in the 'P_' + filename created for each transcript
 blockSize = 1000 # no. of words per block in th 'B_' + filename block delimited output
-
-# Summary Parameters
-# summaryCount = 10
-# model = 'wizardlm2'
-# systemPrompt = 'You are reading a YouTube transcript and will provide a summary'
-# queryPrompt = 'Summarize just the text sequentially in ' + str(summaryCount) + ' detailed and numbered points. Include a short caption to begin each point '
-# headerText = ''
 
 now = datetime.now()
 dateString = now.strftime("%y%m%d_%H%M")

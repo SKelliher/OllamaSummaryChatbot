@@ -1,8 +1,7 @@
 # To Do List - Current
-* Add a Conda wrapper for the Project
+* Add a config file and Configuration Class for installation and run-time options
 
 # To Do List - Backlog
-* Add a config file and Configuration Class for installation and run-time options
 * Add a simple database to track YouTube video data
     * Use database calls to find videos to be processed through the ChatBot
     * DB should allow searches based on incomplete status, by added date, created date, length and author
