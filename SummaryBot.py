@@ -2,7 +2,7 @@ import llamabot
 from llamabot import SimpleBot
 
 class SummaryBot:
-    def __init__(self, fileTag, model, temperature, summaryCount, systemPrompt, queryPrompt, outputHeader):
+    def __init__(self, fileTag, model, temperature, summaryCount, systemPrompt, queryPrompt, outputHeader,textAppend):
         self.fileTag = fileTag
         self.model = model
         self.temperature = temperature
@@ -11,10 +11,11 @@ class SummaryBot:
         self.queryPrompt = queryPrompt
         self.ollamaModel = 'ollama/' + model
         self.outputHeader = outputHeader
+        self.textAppend = textAppend # True or False
 
     def process_input(self):
-        inputPath = './Output/B_' + self.fileTag + '.txt'
-        outputPath = './Summary/S_' + self.fileTag + '_' + self.model + '_' + self.summaryCount + '.txt'
+        inputPath = './Output/YB_' + self.fileTag + '.txt'
+        outputPath = './Summary/YS_' + self.fileTag + '_' + self.model + '_' + self.summaryCount + '.md'
 
         inputText = ''
         with open(inputPath, 'r', encoding="utf-8", errors="replace") as f_in:
@@ -39,8 +40,14 @@ class SummaryBot:
                     for text in endText.split('\\n'):
                         f_out.write(text)
                         f_out.write('\n')
-                    f_out.write('[P]')
+                    f_out.write('***')
                     f_out.write('\n')
+        if self.textAppend:
+            with open(outputPath, 'a', encoding="utf-8", errors="replace") as f_out:
+                f_out.write("# Text" + '\n')
+                f_out.write(inputText)
+                f_out.write('***')
+                f_out.write('\n')
 
     def run(self):
         self.process_input()
