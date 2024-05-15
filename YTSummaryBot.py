@@ -2,13 +2,13 @@ from SummaryBot import SummaryBot
 from datetime import datetime
 import re
 
-# Run-Timee program to read YT Video meta-data from VideoIDList and process associated block files to create a summary. 
+# Run-Time program to read YT Video meta-data from VideoIDList and process associated block files to create a summary. 
 
 # SummaryBot parameters
 fileTag = ''
-summaryCount = 8
+summaryCount = 20
 temperature = 0
-model = 'llama3-chatqa'
+model = 'Lydia'
 systemPrompt = 'You are reading a YouTube transcript and will provide a summary'
 queryPrompt = 'Please provide a detailed summary of the text in about ' 
 queryPrompt += str(summaryCount) + ' detailed and numbered points. Do not add additional comments.'
@@ -49,7 +49,7 @@ for line in inputLines:
     if len(line) > 1:
         lineData = line.split('#^#')
         fileTitle = remove_problematic_chars(lineData[3])
-        fileTag = lineData[2] + '_' + lineData[3] + '_' + lineData[0]
+        fileTag = lineData[2] + '_' + lineData[4] + '_' + lineData[0]
         
         outputHeader = '---' + '\n'
         outputHeader += 'tags: #document' + '\n'

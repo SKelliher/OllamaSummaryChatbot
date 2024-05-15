@@ -70,7 +70,8 @@ for url in myPList.video_urls:
      # print each fileRef as it's generated
     print(fileRef)   
     
-    # Process each video_id in Playlist
+
+
     try:
         transcriptList = YTTS.list_transcripts(video_id)
         transcriptEN = False
@@ -123,5 +124,7 @@ for url in myPList.video_urls:
 
         else:
             print('>>> No English transcript available')
+
+
 
 
