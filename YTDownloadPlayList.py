@@ -21,7 +21,8 @@ https://pypi.org/project/youtube-transcript-api/
 """
 
 """ 
-* [ ] Add # Pending / # Processed Tags to Output file
+* [+] Add # Pending / # Processed Tags to Output file
+* [+] obsidianfilename function to clean video titles for Obsidian
 
 * This program requires a YouTube Playlist to be specified using the PlayList_ID. 
 * The program uses PyTube to generate a list of VideoIDs for the Play List, stored as myPList
@@ -44,9 +45,12 @@ def obsidian_filename(text):
 
 
 
-# Playlist_ID
-playlist_id = 'PLXRB0iupmiy5iFggXztTU86he4OW5cKrC' # Log
+# My Playlists
+#playlist_id = 'PLXRB0iupmiy5iFggXztTU86he4OW5cKrC' # Log
 # playlist_id = 'PLXRB0iupmiy4xSgkED508DZDM6ErJ-tgf' # Test
+
+# 3rd Party PlayLists
+playlist_id = 'PLLN9Pm8MWdPsO3u8F43czOxrkCwVYBmtH' # Solo Gamers Club/Eldritch Horror
 # playlist_id = 'PLm87h0-It8LwPc2N1jppdShUWHKo-78E2' # Stable Diffusion Guide
 
 
