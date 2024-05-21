@@ -28,13 +28,13 @@ inputLines = inputText.split('\n')
 # main loop to process each line in inputLines
 # then call the summaryBot for each VideoID in the first element of the line
 
-# convert date from YYMMDD to MM/DD/YY
+# convert date from YYMMDD to YYYY/MM/DD
 def convert_date(date_str):
     year = "20" + date_str[:2]
     month = date_str[2:4]
     day = date_str[4:6]
     dt = datetime(int(year), int(month), int(day))
-    return dt.strftime("%m/%d/%Y")
+    return dt.strftime("%Y/%m/%d")
 
 # remove characters in title that are problematic in YAML front matter
 def remove_problematic_chars(text):
@@ -52,12 +52,14 @@ for line in inputLines:
         fileTag = lineData[2] + '_' + lineData[4] + '_' + lineData[0]
         
         outputHeader = '---' + '\n'
-        outputHeader += 'tags: #document' + '\n'
+        outputHeader += 'tags: transcript' + '\n'
         outputHeader += 'URL: ' + lineData[1] + '\n'
         outputHeader += 'Author: ' + lineData[2]+ '\n'
         outputHeader += 'Title: ' + fileTitle + '\n'
         outputHeader += 'Published: ' + convert_date(lineData[4])+ '\n'
         outputHeader += 'Seconds: ' + lineData[5]+ '\n'
+        outputHeader += 'Zettel: ' + '\n'
+        outputHeader += 'Schema: ' + '\n'
         outputHeader += '---' + '\n'
         bot = SummaryBot(fileTag, model, temperature, summaryCount, systemPrompt, queryPrompt,outputHeader,True)
         bot.run()

@@ -1,3 +1,5 @@
+# RegEx
+import re
 
 # Third-Party Libraries
 from pytube import YouTube as YT
@@ -8,6 +10,8 @@ from datetime import datetime
 # Project Class Libraries
 from Block_Parse import Block_Parse
 
+
+
 """ 
 Documentation for Python Libraries employed: PyTube, YouTube_Transcript_API 
 https://pypi.org/project/pytube/
@@ -17,6 +21,8 @@ https://pypi.org/project/youtube-transcript-api/
 """
 
 """ 
+* [ ] Add # Pending / # Processed Tags to Output file
+
 * This program requires a YouTube Playlist to be specified using the PlayList_ID. 
 * The program uses PyTube to generate a list of VideoIDs for the Play List, stored as myPList
 * For the videoIDs in myPList, generate a list VideoData[] containing meta-data for each VideoID
@@ -31,9 +37,18 @@ blockSize = 3000 # no. of words per block in th 'B_' + filename block delimited 
 now = datetime.now()
 dateString = now.strftime("%y%m%d_%H%M")
 
+# Video title clean-up
+def obsidian_filename(text):
+    not_permitted_chars = r'[\/\\?%*:|"<>\']'
+    return re.sub(not_permitted_chars, '-', text)
+
+
+
 # Playlist_ID
 playlist_id = 'PLXRB0iupmiy5iFggXztTU86he4OW5cKrC' # Log
 # playlist_id = 'PLXRB0iupmiy4xSgkED508DZDM6ErJ-tgf' # Test
+# playlist_id = 'PLm87h0-It8LwPc2N1jppdShUWHKo-78E2' # Stable Diffusion Guide
+
 
 playlist_id_long = 'https://www.youtube.com/playlist?list=' + playlist_id 
 
@@ -45,7 +60,7 @@ videoIDListName = './Summary/YL_' + 'VideoIDList_' + dateString + '.txt'
 
 # create new VideoIDList file
 with open(videoIDListName, "w", encoding="utf-8", errors="replace") as f_out:
-    pass
+    f_out.write('# Processed\n\n# Pending\n')
 
 # process urls in myPList
 for url in myPList.video_urls:
@@ -56,7 +71,7 @@ for url in myPList.video_urls:
     videoData.append(['URL',url]) 
     videoData.append(['Author',video.author])
     videoData.append(['Publish Date',video.publish_date.strftime("%y%m%d")])
-    videoData.append(['Title',video.title])
+    videoData.append(['Title', obsidian_filename(video.title)])
     videoData.append(['Length',video.length])
 
     # create filename: Author, Date, VideoID
