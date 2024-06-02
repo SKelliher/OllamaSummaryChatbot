@@ -2,6 +2,10 @@ from SummaryBot import SummaryBot
 from datetime import datetime
 import re
 
+"""
+[+] Amend SummaryBot call to add inputTag and outputTag values
+"""
+
 # Run-Time program to read YT Video meta-data from VideoIDList and process associated block files to create a summary. 
 
 # SummaryBot parameters
@@ -47,9 +51,12 @@ def remove_problematic_chars(text):
 countTranscript = 0 # Count number of video transcripts processed for monitoring progress in the terminal
 for line in inputLines:
     if len(line) > 1:
+
+        # lineData is from the input file with values: 0 VideoID, 1, VideoURL, 2 Author, 3 Title, 4 Published, 5 Seconds
         lineData = line.split('#^#')
         fileTitle = remove_problematic_chars(lineData[3])
-        fileTag = lineData[2] + '_' + lineData[4] + '_' + lineData[0]
+        inputTag = lineData[2] + '_' + lineData[4] + '_' + lineData[0]
+        outputTag = lineData[2] + '_' + lineData[4]
         
         outputHeader = '---' + '\n'
         outputHeader += 'tags: transcript' + '\n'
@@ -61,7 +68,7 @@ for line in inputLines:
         outputHeader += 'Zettel: ' + '\n'
         outputHeader += 'Schema: ' + '\n'
         outputHeader += '---' + '\n'
-        bot = SummaryBot(fileTag, model, temperature, summaryCount, systemPrompt, queryPrompt,outputHeader,True)
+        bot = SummaryBot(inputTag, outputTag, model, temperature, summaryCount, systemPrompt, queryPrompt,outputHeader,True)
         bot.run()
         countTranscript += 1
         print ('\n--------------------------------------------------')

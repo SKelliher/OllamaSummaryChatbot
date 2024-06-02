@@ -10,20 +10,19 @@ from datetime import datetime
 # Project Class Libraries
 from Block_Parse import Block_Parse
 
-
-
 """ 
-Documentation for Python Libraries employed: PyTube, YouTube_Transcript_API 
+
+Documentation 
+Python Libraries employed: PyTube, YouTube_Transcript_API 
 https://pypi.org/project/pytube/
 https://www.programcreek.com/python/example/92182/pytube.YouTube
 https://pypi.org/project/youtube-transcript-api/
 
-"""
-
-""" 
+Backlog
 * [+] Add # Pending / # Processed Tags to Output file
-* [+] obsidianfilename function to clean video titles for Obsidian
+* [+] obsidianfilename function to clean video titles and remove tags for Obsidian
 
+Outline
 * This program requires a YouTube Playlist to be specified using the PlayList_ID. 
 * The program uses PyTube to generate a list of VideoIDs for the Play List, stored as myPList
 * For the videoIDs in myPList, generate a list VideoData[] containing meta-data for each VideoID
@@ -33,6 +32,8 @@ https://pypi.org/project/youtube-transcript-api/
 
 # Parsing parameters
 headerLines = 7 # number of header lines in the 'P_' + filename created for each transcript
+
+# BlockSize is the no. of words in each block to sumbit to the LLM for summarizing. eg 3K words for 4K LLM context size
 blockSize = 3000 # no. of words per block in th 'B_' + filename block delimited output
 
 now = datetime.now()
@@ -40,19 +41,17 @@ dateString = now.strftime("%y%m%d_%H%M")
 
 # Video title clean-up
 def obsidian_filename(text):
-    not_permitted_chars = r'[\/\\?%*:|"<>\']'
+    not_permitted_chars = r'[\/\\#?%*:|"<>\']'
     return re.sub(not_permitted_chars, '-', text)
 
-
-
 # My Playlists
-#playlist_id = 'PLXRB0iupmiy5iFggXztTU86he4OW5cKrC' # Log
+playlist_id = 'PLXRB0iupmiy5iFggXztTU86he4OW5cKrC' # Log
 # playlist_id = 'PLXRB0iupmiy4xSgkED508DZDM6ErJ-tgf' # Test
 
 # 3rd Party PlayLists
-playlist_id = 'PLLN9Pm8MWdPsO3u8F43czOxrkCwVYBmtH' # Solo Gamers Club/Eldritch Horror
+# playlist_id = 'PLZhDuTZwzpWdioVVMnJL6an8x3gqa-pAS' # NodusLabs Personal Knowledge Managment
+# playlist_id = 'PLLN9Pm8MWdPsO3u8F43czOxrkCwVYBmtH' # Solo Gamers Club/Eldritch Horror
 # playlist_id = 'PLm87h0-It8LwPc2N1jppdShUWHKo-78E2' # Stable Diffusion Guide
-
 
 playlist_id_long = 'https://www.youtube.com/playlist?list=' + playlist_id 
 

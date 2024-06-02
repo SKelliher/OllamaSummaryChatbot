@@ -1,10 +1,15 @@
 import llamabot
+import datetime
 from llamabot import SimpleBot
 
+"""
+[+] Amend output file name to Author-Published-# format. May use Mins-Secs for # to distinguish files. 
+"""
 class SummaryBot:
-    def __init__(self, fileTag, model, temperature, summaryCount, systemPrompt, queryPrompt, outputHeader,textAppend):
-        self.fileTag = fileTag
-        self.model = model
+    def __init__(self, inputTag, outputTag, model, temperature, summaryCount, systemPrompt, queryPrompt, outputHeader,textAppend):
+        self.inputTag = inputTag # input filename reference
+        self.outputTag = outputTag # output filename reference
+        self.model = model # ollama model parameter reference
         self.temperature = temperature
         self.summaryCount = str(summaryCount)
         self.systemPrompt = systemPrompt
@@ -13,9 +18,32 @@ class SummaryBot:
         self.outputHeader = outputHeader
         self.textAppend = textAppend # True or False
 
+    """Generates an ID based on minutes and seconds for output file"""
+    def time_mmss(self):
+
+        # Get the current time.
+        now = datetime.datetime.now()
+
+        # Get the minutes and seconds.
+        minutes = now.minute
+        seconds = now.second
+
+        # Convert the minutes and seconds to strings.
+        minutes_str = str(minutes)
+        seconds_str = str(seconds)
+
+        # Pad the minutes and seconds with zeros if necessary.
+        if len(minutes_str) == 1:
+            minutes_str = "0" + minutes_str
+        if len(seconds_str) == 1:
+            seconds_str = "0" + seconds_str
+
+        # Return the time in the form mmss.
+        return minutes_str + seconds_str
+
     def process_input(self):
-        inputPath = './Output/YB_' + self.fileTag + '.txt'
-        outputPath = './Summary/YS_' + self.fileTag + '_' + self.model + '_' + self.summaryCount + '.md'
+        inputPath = './Output/YB_' + self.inputTag + '.txt'
+        outputPath = './Summary/' + self.outputTag + '_' + self.time_mmss() + '.md'
 
         inputText = ''
         with open(inputPath, 'r', encoding="utf-8", errors="replace") as f_in:
