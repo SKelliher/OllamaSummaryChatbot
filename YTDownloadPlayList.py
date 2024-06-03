@@ -19,7 +19,7 @@ https://www.programcreek.com/python/example/92182/pytube.YouTube
 https://pypi.org/project/youtube-transcript-api/
 
 Backlog
-* [+] Add # Pending / # Processed Tags to Output file
+* [+] Add # Pending / # Processed Tags to Input file
 * [+] obsidianfilename function to clean video titles and remove tags for Obsidian
 
 Outline
@@ -59,7 +59,7 @@ playlist_id_long = 'https://www.youtube.com/playlist?list=' + playlist_id
 myPList = PL(playlist_id_long)
 
 # Create VideoID list for further processing
-videoIDListName = './Summary/YL_' + 'VideoIDList_' + dateString + '.txt'    
+videoIDListName = './FileOut/YL_' + 'VideoIDList_' + dateString + '.txt'    
 
 # create new VideoIDList file
 with open(videoIDListName, "w", encoding="utf-8", errors="replace") as f_out:
@@ -84,7 +84,7 @@ for url in myPList.video_urls:
     pubdate = str(videoData[3][1]) 
     video_id =  str(videoData[0][1])
     fileRef = author + '_' + pubdate + '_' +  video_id
-    fileName = './Output/YP_' + fileRef + '.txt'
+    fileName = './FileIn/YP_' + fileRef + '.txt'
      # print each fileRef as it's generated
     print(fileRef)   
     

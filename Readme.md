@@ -12,4 +12,4 @@ For execution, this is running in a virtualenv .\venv subdirectory with
 * llamabot - installed locally using pip - large dependency install
 
 ## sub-directories
-Create subdirectories ./venv/Summary and ./venv/Output for holding processing files
+Create subdirectories ./venv/FileIn and ./venv/FileOut for holding Output/Input files

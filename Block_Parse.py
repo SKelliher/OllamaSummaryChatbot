@@ -3,8 +3,8 @@ class Block_Parse:
     def __init__(self, readName, headerRows, blockLimit):
         self.readName = readName
         self.headerRows = headerRows
-        self.readPath = r'./Output/YP_'  + self.readName + '.txt'
-        self.writePath = r'./Output/YB_' + self.readName + '.txt'
+        self.readPath = r'./FileIn/YP_'  + self.readName + '.txt'
+        self.writePath = r'./FileIn/YB_' + self.readName + '.txt'
         self.blockLimit = blockLimit
 
     def load_text(self):

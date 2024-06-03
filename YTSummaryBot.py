@@ -12,7 +12,7 @@ import re
 fileTag = ''
 summaryCount = 20
 temperature = 0
-model = 'Lydia'
+model = 'llama3'
 systemPrompt = 'You are reading a YouTube transcript and will provide a summary'
 queryPrompt = 'Please provide a detailed summary of the text in about ' 
 queryPrompt += str(summaryCount) + ' detailed and numbered points. Do not add additional comments.'
@@ -20,7 +20,7 @@ queryPrompt += str(summaryCount) + ' detailed and numbered points. Do not add ad
 outputHeader = ''
 
 # open VideoIDList
-readPath = './Summary/YL_VideoIDList.txt'
+readPath = './FileOut/YL_VideoIDList.txt'
 readList = ''
 
 inputText = ''

@@ -42,8 +42,8 @@ class SummaryBot:
         return minutes_str + seconds_str
 
     def process_input(self):
-        inputPath = './Output/YB_' + self.inputTag + '.txt'
-        outputPath = './Summary/' + self.outputTag + '_' + self.time_mmss() + '.md'
+        inputPath = './FileIn/YB_' + self.inputTag + '.txt'
+        outputPath = './FileOut/' + self.outputTag + '_' + self.time_mmss() + '.md'
 
         inputText = ''
         with open(inputPath, 'r', encoding="utf-8", errors="replace") as f_in:
