@@ -19,6 +19,7 @@ https://www.programcreek.com/python/example/92182/pytube.YouTube
 https://pypi.org/project/youtube-transcript-api/
 
 Backlog
+* [ ] Apply text-cleanup to Author Field to remove '/'
 * [+] Add # Pending / # Processed Tags to Input file
 * [+] obsidianfilename function to clean video titles and remove tags for Obsidian
 
@@ -45,8 +46,8 @@ def obsidian_filename(text):
     return re.sub(not_permitted_chars, '-', text)
 
 # My Playlists
-playlist_id = 'PLXRB0iupmiy5iFggXztTU86he4OW5cKrC' # Log
-# playlist_id = 'PLXRB0iupmiy4xSgkED508DZDM6ErJ-tgf' # Test
+# playlist_id = 'PLXRB0iupmiy5iFggXztTU86he4OW5cKrC' # Log
+playlist_id = 'PLXRB0iupmiy4xSgkED508DZDM6ErJ-tgf' # Test
 
 # 3rd Party PlayLists
 # playlist_id = 'PLZhDuTZwzpWdioVVMnJL6an8x3gqa-pAS' # NodusLabs Personal Knowledge Managment
@@ -72,7 +73,7 @@ for url in myPList.video_urls:
     videoData = []
     videoData.append(['VideoID',url.split("=")[1]])
     videoData.append(['URL',url]) 
-    videoData.append(['Author',video.author])
+    videoData.append(['Author',obsidian_filename(video.author)])
     videoData.append(['Publish Date',video.publish_date.strftime("%y%m%d")])
     videoData.append(['Title', obsidian_filename(video.title)])
     videoData.append(['Length',video.length])
